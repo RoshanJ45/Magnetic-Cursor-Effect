@@ -1,0 +1,47 @@
+<div class="container">
+    <style>
+        * {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: Arial, sans-serif;
+}
+body {
+background-color: #1e1e1e;
+color: #fff;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+overflow: hidden;
+}
+.container {
+display: flex;
+gap: 40px;
+}
+.magnetic-item {
+font-size: 24px;
+font-weight: bold;
+padding: 20px 40px;
+border: 2px solid #00ffea;
+border-radius: 10px;
+transition: transform 0.3s ease-out;
+cursor: pointer;
+}
+    </style>
+<div class="magnetic-item">Hover Me</div>
+<script>
+    const magneticItems = document.querySelectorAll('.magnetic-item');
+magneticItems.forEach(item => {
+item.addEventListener('mousemove', (e) => {
+const { left, top, width, height } = item.getBoundingClientRect();
+const x = (e.clientX - (left + width / 2)) * 0.3;
+const y = (e.clientY - (top + height / 2)) * 0.3;
+item.style.transform = `translate(${x}px, ${y}px)`;
+});
+item.addEventListener('mouseleave', () => {
+item.style.transform = 'translate(0, 0)';
+});
+});
+</script>
+</div>
